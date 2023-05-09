@@ -9,17 +9,41 @@
         <link rel="stylesheet" href="./assets/style.css">
         <title>Bootstrap UI Components</title>
     </head>
+    <!--Use Week6 Unsolved4 for reference on forms and designing the buttons-->
     <body>
         <header class="container-fluid bg-dark text-light mb-5 p-3">
             <div class="d-flex align-items-center">
                 <h1>Weather Dashboard</h1>
             </div>
         </header>
-        <section class="container my-5" id="searchbar">
-            <h1>Search</h1>
-        </section>
-        <section class="container my-5" id="results">
-            <h1>Results</h1>
-        </section>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-3" id="searchbar">
+                <h2>Search for a City</h2>
+                <form id="searchForm">
+                    <input type="text" id="city" name="city"><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+                <div id="previousCities" class="list-group"></div>
+            </div>
+            <div class="col-8" id="results">
+                <h2>Results</h2>
+                <div class="row" id="today">
+                    <h4>Today</h4>
+                </div>
+                <div class="row" id="future">
+                    <h4>5 Day Forcast</h4>
+                    <div class="col-1"></div>
+                    <div class="col-1" id="day1">1</div>
+                    <div class="col-1" id="day2">2</div>
+                    <div class="col-1" id="day3">3</div>
+                    <div class="col-1" id="day4">4</div>
+                    <div class="col-1" id="day5">5</div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="./assets/script.js"></script>
     </body>
 </html>
