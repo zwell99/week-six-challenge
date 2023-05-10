@@ -22,9 +22,43 @@ function formSubmitHandler(event) {
 
 function getCityWeather(name) {
     var cityApiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + name + "&limit=1&appid="; // appid?
-    var cityName;
-    var weatherApiUrl = "https://api.openweathermap.org/" + cityName; // this needs to be worked on
-    console.log("Hello world");
+    var cityLat;
+    var cityLon;
+    fetch(cityApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          cityLat = data.lat;
+          cityLon = data.lon;
+        })
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    var weatherSymbol = [];
+    var temp = [];
+    var wind = [];
+    var humid = [];
+    var weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" + cityLat + "&lon=" + cityLon + "&cnt=6&units=imperial&appid=";
+    fetch(weatherApiUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          for (var i = 0; i < 6; i++) {
+            weatherSymbol.push(data.list[i].weather[0].icon); // replace icon with main/description?
+            temp.push(data.list[i].temp.day);
+            wind.push(data.list[i].speed);
+            humid.push(data.list[i].humidity);
+          }
+        })
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    console.log(weatherSymbol);
+    console.log(temp);
+    console.log(wind);
+    console.log(humid);
+    fillTodayWeather();
+    fillWeekWeather();
 }
 
 function createButton(name) {
